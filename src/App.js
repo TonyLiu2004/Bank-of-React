@@ -13,13 +13,14 @@ import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
 import Credits from './components/Credits';
 import Debits from './components/Debits';
+import NavBar from './components/NavBar'
 
 class App extends Component {
   constructor() {  // Create and initialize state
     super(); 
     this.state = {
       accountBalance: 1234567.89,
-      creditList: [],
+      creditList: [{name:"Shoes", amount:120.00},{name:"Shopping", amount:100.00}],
       debitList: [],
       currentUser: {
         userName: 'Joe Smith',
@@ -28,6 +29,9 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.calculateBalance();
+  }
   // Update state's currentUser (userName) after "Log In" button is clicked
   mockLogIn = (logInInfo) => {  
     const newUser = {...this.state.currentUser};
@@ -35,6 +39,21 @@ class App extends Component {
     this.setState({currentUser: newUser})
   }
 
+  addCredit = (credit) => {
+    this.setState({creditList: credit});
+    this.calculateBalance();
+  }
+
+  calculateBalance = () => {
+    let balance = this.state.accountBalance;
+    this.state.creditList.forEach(credit => {
+      balance += credit.amount;
+    });
+    this.state.debitList.forEach(debit => {
+      balance -= debit.amount;
+    });
+    this.setState({accountBalance: balance});
+  }
   // Create Routes and React elements to be rendered using React components
   render() {  
     // Create React elements and pass input props to components
@@ -43,12 +62,13 @@ class App extends Component {
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />
     )
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
-    const CreditsComponent = () => (<Credits credits={this.state.creditList} />) 
+    const CreditsComponent = () => (<Credits credits={this.state.creditList} updateCredits={this.addCredit} />) 
     const DebitsComponent = () => (<Debits debits={this.state.debitList} />) 
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
     return (
-      <Router basename="/bank-of-react-starter-code">
+      <Router basename="/bank-of-react-Tony-Liu">
+        <NavBar accountBalance={this.state.accountBalance} />
         <div>
           <Route exact path="/" render={HomeComponent}/>
           <Route exact path="/userProfile" render={UserProfileComponent}/>

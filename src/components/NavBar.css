@@ -1,0 +1,21 @@
+#NavBar-Container{
+    display:flex;
+    justify-content:space-between;
+    padding-top:10px;
+    padding-left:15px;
+    padding-right:15px;
+    background-color:rgb(44, 170, 44);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+#Navbar-Links{
+    display:flex;
+    justify-content: space-between;
+    width:60%;
+}
+
+.Link{
+    text-decoration: none;
+}
