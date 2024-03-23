@@ -9,31 +9,29 @@ import React, { useState } from 'react';
 const Credits = (props) => {
   const [creditList, setCreditList] = useState(props.credits);
   const [amount, setAmount] = useState(0);
-  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   function handleSubmit (e) {
     e.preventDefault();
-    if(amount === 0 || name === "") return;
-    const newCredit = { name, amount };
+    if(amount === 0 || description === "") return;
+    let date = new Date().toISOString().slice(0, 10);
+    const newCredit = { description, amount, date};
     const updatedCredits = [...creditList, newCredit];
     setCreditList(updatedCredits);
     props.updateCredits(updatedCredits);
-    setName("");
+    setDescription("");
     setAmount(0);
-
-    console.log(props.credits)
   };
   function handleAmount (e){
     setAmount(parseInt(e.target.value));
   }
 
-  function handleName (e){
-    setName(e.target.value);
+  function handleDescription (e){
+    setDescription(e.target.value);
   }
 
   return (
     <div>
       <h1>Credits</h1>
-      <br/>
       <form onSubmit={handleSubmit} style={{
         display: 'flex',
         justifyContent: 'space-around',
@@ -44,8 +42,8 @@ const Credits = (props) => {
         margin: '0 auto', 
       }}>
           <div>
-            <label>Name:</label>
-            <input type="text" value={name} onChange={handleName}/>
+            <label>Description:</label>
+            <input type="text" value={description} onChange={handleDescription}/>
           </div>
           <div>
             <label>Amount:</label>
@@ -60,7 +58,7 @@ const Credits = (props) => {
         width: '40%',
       }}>
         {props.credits.slice().reverse().map((credit, index) => (
-          <ul key={index}>{credit.name}: {credit.amount}</ul>
+          <ul key={index}>${credit.amount} : {credit.description} - {credit.date}</ul>
         ))}
       </div>
       <br/>
