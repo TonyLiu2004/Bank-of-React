@@ -22,7 +22,9 @@ const Credits = (props) => {
     setAmount(0);
   };
   function handleAmount (e){
-    setAmount(parseInt(e.target.value));
+    const inputValue = parseFloat(e.target.value);
+    const formattedValue = Math.floor(inputValue * 100) / 100;
+    setAmount(formattedValue);
   }
 
   function handleDescription (e){

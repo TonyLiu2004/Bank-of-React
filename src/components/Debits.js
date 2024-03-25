@@ -11,13 +11,13 @@ const Debits = (props) => {
   const [debitList, setDebitList] = useState(props.debits);
   const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState('');
-  let debitsView = () => {
-    const { debits } = props;
-    return debits.map((debit) => {  // Extract "id", "amount", "description" and "date" properties of each debits JSON array element
-      let date = debit.date.slice(0,10);
-      return <li key={debit.id}>{debit.amount} {debit.description} {date}</li>
-    });
-  }
+  // let debitsView = () => {
+  //   const { debits } = props;
+  //   return debits.map((debit) => {  // Extract "id", "amount", "description" and "date" properties of each debits JSON array element
+  //     let date = debit.date.slice(0,10);
+  //     return <li key={debit.id}>{debit.amount} {debit.description} {date}</li>
+  //   });
+  // }
   function handleSubmit (e) {
     e.preventDefault();
     if(amount === 0 || description === "") return;
@@ -35,7 +35,9 @@ const Debits = (props) => {
   }
 
   function handleAmount (e){
-    setAmount(parseInt(e.target.value));
+    const inputValue = parseFloat(e.target.value);
+      const formattedValue = Math.floor(inputValue * 100) / 100;
+      setAmount(parseFloat(formattedValue));
   }
   // Render the list of Debit items and a form to input new Debit item
   return (
