@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bank-of-react-Tony-Liu/static/css/main.3dce626e.css",
-    "main.js": "/bank-of-react-Tony-Liu/static/js/main.d94980f2.js",
-    "static/js/453.d81f9453.chunk.js": "/bank-of-react-Tony-Liu/static/js/453.d81f9453.chunk.js",
-    "index.html": "/bank-of-react-Tony-Liu/index.html",
-    "main.3dce626e.css.map": "/bank-of-react-Tony-Liu/static/css/main.3dce626e.css.map",
-    "main.d94980f2.js.map": "/bank-of-react-Tony-Liu/static/js/main.d94980f2.js.map",
-    "453.d81f9453.chunk.js.map": "/bank-of-react-Tony-Liu/static/js/453.d81f9453.chunk.js.map"
+    "main.css": "/Bank-of-React/static/css/main.3dce626e.css",
+    "main.js": "/Bank-of-React/static/js/main.dc4e6a0f.js",
+    "static/js/453.d81f9453.chunk.js": "/Bank-of-React/static/js/453.d81f9453.chunk.js",
+    "index.html": "/Bank-of-React/index.html",
+    "main.3dce626e.css.map": "/Bank-of-React/static/css/main.3dce626e.css.map",
+    "main.dc4e6a0f.js.map": "/Bank-of-React/static/js/main.dc4e6a0f.js.map",
+    "453.d81f9453.chunk.js.map": "/Bank-of-React/static/js/453.d81f9453.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3dce626e.css",
-    "static/js/main.d94980f2.js"
+    "static/js/main.dc4e6a0f.js"
   ]
 }
