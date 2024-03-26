@@ -72,7 +72,7 @@ class App extends Component {
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
     return (
-      <Router basename="/bank-of-react-Tony-Liu">
+      <Router basename="/bank-of-react">
         <NavBar accountBalance={this.state.accountBalance} />
         <div>
           <Route exact path="/" render={HomeComponent}/>
