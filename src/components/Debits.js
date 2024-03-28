@@ -21,7 +21,7 @@ const Debits = (props) => {
   function handleSubmit (e) {
     e.preventDefault();
     if(amount === 0 || description === "") return;
-    let date = new Date().toISOString().slice(0, 10);
+    let date = new Date().toISOString();
     const newDebit = { description, amount, date};
     const newDebits = [...debitList, newDebit];
     setDebitList(newDebits);

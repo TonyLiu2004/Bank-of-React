@@ -4,8 +4,9 @@ src/App.js
 This is the top-level component of the app.
 It contains the top-level state.
 ==================================================*/
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import axios from 'axios';
 
 // Import other components
 import Home from './components/Home';
@@ -20,7 +21,7 @@ class App extends Component {
     super(); 
     this.state = {
       accountBalance: 10000.00,
-      creditList: [{description:"Shoes", amount:120.00, date:"11/22/99"},{description:"Shopping", amount:100.00, date:"9/12/2004"}],
+      creditList: [],
       debitList: [],
       currentUser: {
         userName: 'Joe Smith',
@@ -28,9 +29,26 @@ class App extends Component {
       }
     };
   }
-
   componentDidMount() {
-    this.calculateBalance();
+    axios.get('https://johnnylaicode.github.io/api/credits.json')
+    .then(response => {
+      this.setState({ creditList: response.data }, () => {
+        this.calculateBalance();
+      });
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+    axios.get('https://johnnylaicode.github.io/api/debits.json')
+    .then(response => {
+      this.setState({ debitList: response.data }, () => {
+        this.calculateBalance();
+      });
+    })
+    .catch(error => {
+      console.error(error);
+    });
   }
   // Update state's currentUser (userName) after "Log In" button is clicked
   mockLogIn = (logInInfo) => {  
@@ -52,11 +70,13 @@ class App extends Component {
   calculateBalance = () => {
     let balance = this.state.accountBalance;
     this.state.creditList.forEach(credit => {
+      console.log(credit);
       balance += credit.amount;
     });
     this.state.debitList.forEach(debit => {
       balance -= debit.amount;
     });
+    console.log(balance);
     this.setState({accountBalance: balance});
   }
   // Create Routes and React elements to be rendered using React components

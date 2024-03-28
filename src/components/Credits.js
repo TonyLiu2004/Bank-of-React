@@ -13,7 +13,7 @@ const Credits = (props) => {
   function handleSubmit (e) {
     e.preventDefault();
     if(amount === 0 || description === "") return;
-    let date = new Date().toISOString().slice(0, 10);
+    let date = new Date().toISOString();
     const newCredit = { description, amount, date};
     const updatedCredits = [...creditList, newCredit];
     setCreditList(updatedCredits);
